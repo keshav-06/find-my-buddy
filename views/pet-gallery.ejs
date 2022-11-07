@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/chat.css" />
+    <title>Pet's Gallery</title>
+  </head>
+
+  <body>
+    <%- include('header'); -%>
+    <!-- <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="#">
+            <img
+              src="/images/logo.png"
+              alt="PP"
+              style="height: 90px; width: 90px; border-radius: 50px"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div
+              class="d-flex mx-auto flex-column flex-lg-row align-items-center"
+            >
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/pet-gallery">Pet's gallery </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/auth/google"> Login </a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button
+                  class="btn my-2 my-sm-0 nav_search-btn"
+                  type="submit"
+                ></button>
+              </form>
+            </div>
+            <div class="quote_btn-container d-flex justify-content-center">
+              <a href=""> Call: +91 9988776655 </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header> -->
+    <section class="background firstsection">
+      <div class="box-main">
+        <div class="firstHalf">
+          <p class="text-big">Don't Shop, Adopt!</p>
+          <p class="text-small">Let's make their life happy too.</p>
+          <!-- <div class="buttons">
+                    <button class="btn">Watch Video</button>
+                </div> -->
+        </div>
+        <div class="secondHalf">
+          <img src="images/logo.png" alt="Logo Image" />
+        </div>
+      </div>
+    </section>
+
+    <section id="filters">
+      <center>
+        <h2>Filter buddies</h2>
+        <% const species = []; %>
+        <% const cities = []; %>
+          <% const map = new Map(); %>
+          <% for (const item of data) { %>
+            <% if(!map.has(item.species)){ %>
+              <% map.set(item.species, true);    // set any value to Map %>
+              <% species.push(item.species);%>
+              <%   } %>
+            <% if(!map.has(item.location)){ %>
+              <% map.set(item.location, true);    // set any value to Map %>
+              <% cities.push(item.location);%>
+              <%   } %>
+              <%  } %>
+        <label for="cityFilter">City</label>
+        <select name="cityFilter" id="cityFilter">
+          <option value="Any">Any</option>
+          <% for(var i=0; i < cities.length; i++){ %>
+          <option value="<%= cities[i] %>"><%= cities[i] %></option>
+          <% } %>
+        </select>
+
+        <label for="speciesFilter">Species</label>
+        <select name="speciesFilter" id="speciesFilter">
+          <option value="Any">Any</option>
+          <% for(var i=0; i < species.length; i++){ %>
+            <option value="<%= species[i] %>"><%= species[i] %></option>
+          <% } %>
+        </select>
+
+        <label for="ageFilter">Age</label>
+        <input type="number" name="ageFilter" id="ageFilter" min="0" max="99" />
+
+        <label for="vacFilter">Vaccination</label>
+        <select name="vacFilter" id="vacFilter">
+          <option value="Any">Any</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        
+        <button type="button" class="btn btn-primary" id="filterButton">
+          Filter
+        </button>
+      </center>
+    </section>
+
+    <script>
+      function filter() {
+        var city = document.getElementById("cityFilter").value;
+        var species = document.getElementById("speciesFilter").value;
+        var age = document.getElementById("ageFilter").value;
+        var vac = document.getElementById("vacFilter").value;
+        var checkCity = city == "Any" ? false : true;
+        var checkSpecies = species == "Any" ? false : true;
+        var checkAge = age == "" ? false : true;
+        var checkVac = vac == "Any" ? false : true;
+
+        var pets1 = [].slice.call(document.getElementsByClassName("section"));
+        var pets2 = [].slice.call(
+          document.getElementsByClassName("section left")
+        );
+        var pets = pets1.concat(pets2);
+        var data = JSON.parse('<%- JSON.stringify(data) %>');
+
+        for (let i = 0; i < data.length; i++) {
+          // var s = pets[i].childNodes[1].childNodes[3].innerHTML;
+          if (checkAge) {
+            if (age == data[i].age) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkCity) {
+            if (city == data[i].location) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          } 
+          if (checkSpecies) {
+            if (species == data[i].species) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkVac) {
+            if (vac == data[i].vac) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+        }
+        document.getElementById("filterButton").innerHTML = "Reset";
+        document.getElementById("filterButton").onclick = reset;
+      }
+
+      function reset() {
+        var pets1 = [].slice.call(document.getElementsByClassName("section"));
+        var pets2 = [].slice.call(
+          document.getElementsByClassName("section left")
+        );
+        var pets = pets1.concat(pets2);
+        for (let i = 0; i < pets.length; i++) {
+          pets[i].style.display = "flex";
+        }
+
+        document.getElementById("ageFilter").value = "";
+        city = document.getElementById("cityFilter").value = "Any";
+        species = document.getElementById("speciesFilter").value = "Any";
+        vac = document.getElementById("vacFilter").value = "Any";
+        document.getElementById("filterButton").innerHTML = "Filter";
+        document.getElementById("filterButton").onclick = filter;
+      }
+
+      document.getElementById("filterButton").onclick = filter;
+    </script>
+    <% if(data.length){ for(var i = 0; i < data.length; i++) {
+      if(i%2 == 0){ %>
+        <section class="section">
+          <%}else { %> <section class="section left"> <% } %>
+      <div class="paras">
+        <h2 class="sectionTag text-big head">
+          <em><%= data[i].name %></em>
+        </h2>
+        <p class="sectionSubtag text-small">
+          Species: <%= data[i].species %> <br />
+          Age: <%= data[i].age %> <br />Location: <%= data[i].location %><br />Vaccination:
+          Done<br />Breed: <%= data[i].breed %>
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src=<%= data[i].image %>alt="pet image" class="imgFluid" />
+      </div>
+    </section>
+    <% } }else{ %>
+    <section class="section">
+      <div class="paras">
+        <h2 class="sectionTag text-big head">No pets found!</h2>
+        rs
+      </div>
+    </section>
+    <% } %>
+
+    <!-- <section class="section">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>1. Cheesecake</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 8 years <br />Location: New Delhi <br />Vaccination: Done
+          <br />Health: Healthy <br />Breed: Golden Retriever
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/golden-retriever.jpg" alt="pet dog" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section left">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>2. Bella</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 4 years <br />Location: Kolkata <br />Vaccinated: Yes
+          <br />Health: Good <br />Breed: Ragdoll
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/ragdoll.jpeg" alt="Pet Cat" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>3. Jose</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 13 years <br />Location: Noida <br />Vaccinated: N/A
+          <br />Health: Fine <br />Breed: Pond Slider
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/turtle.jpeg" alt="Pet turtle" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section left">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>4. Kitty</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 8 years <br />Location: Vellore <br />Vaccinated: N/A
+          <br />Health: Good <br />Breed: Persian Cat
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/persian.jpeg" alt="Wearing Mask" class="imgFluid" />
+      </div>
+    </section>
+    <section class="section">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>5. Chetak</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 15 years <br />Location: Chennai <br />Vaccination: Done
+          <br />Health: Healthy <br />Breed: Appaloosa
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/appaloosa.jpeg" alt="pet horse" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section left">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>6. Tyson</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 6 years <br />Location: Banglore <br />Vaccinated: Yes
+          <br />Health: Good <br />Breed: German Shepherd
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/german.jpeg" alt="Pet dog" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>7. Bob</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 9 years <br />Location: Bokaro <br />Vaccinated: No <br />Health:
+          Fine <br />Breed: Doberman
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/doberman.jpeg" alt="Pet dog" class="imgFluid" />
+      </div>
+    </section>
+
+    <section class="section left">
+      <div class="paras">
+        <h2 class="sectionTag text-big head"><em>8. Oggy</em></h2>
+        <p class="sectionSubtag text-small">
+          Age: 8 years <br />Location: Pune <br />Vaccinated: Yes <br />Health:
+          Good <br />Breed: Persian Cat
+        </p>
+      </div>
+      <div class="thumbnail">
+        <img src="images/persian2.jpeg" alt="cat" class="imgFluid" />
+      </div>
+    </section> -->
+
+    <hr />
+
+    <button class="open-button" onclick="openForm()">Chat</button>
+    <div class="chat-popup" id="myForm">
+      <form action="/action_page.php" class="form-container">
+        <h1>Chat</h1>
+
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." name="msg" required></textarea>
+
+        <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">
+          Close
+        </button>
+      </form>
+    </div>
+    <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

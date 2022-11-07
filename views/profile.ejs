@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('header'); -%>
+
+    <div class="user_profile">
+      <h1>Welcome to your profile, <%= user.username %></h1>
+      <main>
+        <img src="<%= user.thumbnail %>" />
+      </main>
+      <section class="upload" id="upload">
+        <h2 class="text-centre">Upload pet's details</h2>
+        <div class="form">
+          <form method="post" action="/upload">
+            <input
+              class="form-input"
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="Enter your phone"
+            />
+            <input
+              class="form-input"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter the pet's name"
+            />
+            <input
+              class="form-input"
+              type="text"
+              name="species"
+              id="species"
+              placeholder="Enter the pet's species"
+            />
+            <input
+              class="form-input"
+              type="text"
+              name="age"
+              id="age"
+              placeholder="Enter age of your pet"
+            /><br />
+            <input
+              class="form-input"
+              type="text"
+              name="breed"
+              id="breed"
+              placeholder="Enter breed of your pet"
+            /><br />
+            Vaccination Status: &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="Vaccination" id="Yes" value="Yes" />Yes
+            &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="Vaccination" id="no" value="No" />No
+            <input
+              class="form-input"
+              type="text"
+              name="location"
+              id="location"
+              placeholder="Enter your location"
+            /><br />
+            <textarea
+              class="form-input"
+              name="text"
+              id="text"
+              cols="30"
+              rows="10"
+              placeholder="Your pet description"
+            ></textarea>
+            Upload Image here:<input
+              type="file"
+              id="image"
+              name="image"
+              class="btn"
+            /><br />
+            <button type="submit" class="btn btn-sm btn-dark">Submit</button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- <script>
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // get values
+        const name = form.name.value;
+        const species = form.species.value;
+        const age = form.age.value;
+        const location = form.location.value;
+        const vaccination = form.vaccination.value;
+        const breed = form.breed.value;
+        const description = form.description.value;
+        const image = form.image.value;
+
+        try {
+          const res = await fetch("/profile", {
+            method: "POST",
+            body: JSON.stringify({
+              name: name,
+              species: species,
+              age: age,
+              location: location,
+              vaccination: vaccination,
+              breed: breed,
+              description: description,
+              image: image,
+            }),
+            headers: { "Content-type": "application/json" },
+          });
+          const data = await res.json();
+          console.log("LMAOOOOO" + data);
+          // if (data.error) {
+          //   emailError.textContent = data.error.email;
+          //   passwordError.textContent = data.error.password;
+          // }
+          // if (data.user) {
+          //   location.assign("/");
+          // }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    </script> -->
+  </body>
+</html>
