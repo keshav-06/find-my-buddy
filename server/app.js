@@ -2,6 +2,7 @@ const express = require("express");
 const authRoutes = require("./routes/auth-routes");
 const profileRoutes = require("./routes/profile-routes");
 const petRoutes = require("./routes/pet-routes");
+const contactRoutes = require("./routes/contact-routes");
 const passportSetup = require("./config/passport-setup");
 const mongoose = require("mongoose");
 const keys = require("./config/key");
@@ -33,19 +34,12 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/upload", petRoutes);
+app.use("/contact", contactRoutes);
 app.use("/pet-gallery", petRoutes);
 
 app.get("/", (req, res) => {
   res.render("index", { user: req.user });
 });
-
-// app.get("/pet-gallery", (req, res) => {
-//   res.render("pet-gallery");
-// });
-
-// app.post("/pets", (req, res) => {
-//   res.render("profile", { user: req.user });
-// });
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
