@@ -1,8 +1,13 @@
 const Pet = require("../models/pet-model");
 
 const router = require("express").Router();
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
-router.post("/", function (req, res) {
+const { uploadFile } = require("../config/s3");
+
+router.post("/", upload.single("image"), async function (req, res) {
+  const result = await uploadFile(req.file);
   new Pet({
     phone: req.body.phone,
     name: req.body.name,
@@ -12,7 +17,7 @@ router.post("/", function (req, res) {
     vaccination: req.body.vaccination,
     breed: req.body.breed,
     description: req.body.description,
-    image: req.body.image,
+    image: result.Location,
   }).save((err, doc) => {
     if (!err) {
       res.redirect("/pet-gallery");
