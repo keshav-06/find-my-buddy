@@ -1,0 +1,118 @@
+<html>
+  <body>
+    <section id="filters">
+      <center>
+        <h2>Filter buddies</h2>
+        <% const species = []; %> <% const cities = []; %> <% const map = new
+        Map(); %> <% for (const item of data) { %> <%
+        if(!map.has(item.species)){ %> <% map.set(item.species, true); %> <%
+        species.push(item.species);%> <% } %> <% if(!map.has(item.location)){ %>
+        <% map.set(item.location, true); %> <% cities.push(item.location);%> <%
+        } %> <% } %>
+        <label for="cityFilter">City</label>
+        <select name="cityFilter" id="cityFilter">
+          <option value="Any">Any</option>
+          <% for(var i=0; i < cities.length; i++){ %>
+          <option value="<%= cities[i] %>"><%= cities[i] %></option>
+          <% } %>
+        </select>
+
+        <label for="speciesFilter">Species</label>
+        <select name="speciesFilter" id="speciesFilter">
+          <option value="Any">Any</option>
+          <% for(var i=0; i < species.length; i++){ %>
+          <option value="<%= species[i] %>"><%= species[i] %></option>
+          <% } %>
+        </select>
+
+        <label for="ageFilter">Age</label>
+        <input type="number" name="ageFilter" id="ageFilter" min="0" max="99" />
+
+        <label for="vacFilter">Vaccination</label>
+        <select name="vacFilter" id="vacFilter">
+          <option value="Any">Any</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <button type="button" class="btn btn-primary" id="filterButton">
+          Filter
+        </button>
+      </center>
+    </section>
+
+    <script>
+      function filter() {
+        var city = document.getElementById("cityFilter").value;
+        var species = document.getElementById("speciesFilter").value;
+        var age = document.getElementById("ageFilter").value;
+        var vac = document.getElementById("vacFilter").value;
+        var checkCity = city == "Any" ? false : true;
+        var checkSpecies = species == "Any" ? false : true;
+        var checkAge = age == "" ? false : true;
+        var checkVac = vac == "Any" ? false : true;
+
+        var pets1 = [].slice.call(document.getElementsByClassName("section"));
+        var pets2 = [].slice.call(
+          document.getElementsByClassName("section left")
+        );
+        var pets = pets1.concat(pets2);
+        var data = JSON.parse("<%- JSON.stringify(data) %>");
+
+        for (let i = 0; i < data.length; i++) {
+          // var s = pets[i].childNodes[1].childNodes[3].innerHTML;
+          if (checkAge) {
+            if (age == data[i].age) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkCity) {
+            if (city == data[i].location) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkSpecies) {
+            if (species == data[i].species) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkVac) {
+            if (vac == data[i].vac) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+        }
+        document.getElementById("filterButton").innerHTML = "Reset";
+        document.getElementById("filterButton").onclick = reset;
+      }
+
+      function reset() {
+        var pets1 = [].slice.call(document.getElementsByClassName("section"));
+        var pets2 = [].slice.call(
+          document.getElementsByClassName("section left")
+        );
+        var pets = pets1.concat(pets2);
+        for (let i = 0; i < pets.length; i++) {
+          pets[i].style.display = "flex";
+        }
+
+        document.getElementById("ageFilter").value = "";
+        city = document.getElementById("cityFilter").value = "Any";
+        species = document.getElementById("speciesFilter").value = "Any";
+        vac = document.getElementById("vacFilter").value = "Any";
+        document.getElementById("filterButton").innerHTML = "Filter";
+        document.getElementById("filterButton").onclick = filter;
+      }
+
+      document.getElementById("filterButton").onclick = filter;
+    </script>
+  </body>
+</html>
