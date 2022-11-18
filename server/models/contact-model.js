@@ -5,7 +5,6 @@ const contactSchema = new Schema({
   name: String,
   phone: String,
   email: String,
-  age: String,
   message: String,
 });
 

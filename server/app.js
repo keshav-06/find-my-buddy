@@ -36,9 +36,14 @@ app.use("/profile", profileRoutes);
 app.use("/upload", petRoutes);
 app.use("/contact", contactRoutes);
 app.use("/pet-gallery", petRoutes);
+app.get("/about");
 
 app.get("/", (req, res) => {
   res.render("index", { user: req.user });
+});
+
+app.get("/about", function (req, res) {
+  res.render("about", { user: req.user });
 });
 
 app.listen(3000, () => {

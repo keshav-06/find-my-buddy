@@ -12,6 +12,8 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+var user = {};
 passport.use(
   new GoogleStrategy(
     {
@@ -24,6 +26,7 @@ passport.use(
       User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           console.log("existing User: " + currentUser);
+          // module.exports = user;
           done(null, currentUser);
         } else {
           new User({
@@ -35,6 +38,7 @@ passport.use(
             .save()
             .then((newUser) => {
               console.log("new User: " + newUser);
+              // module.exports = user;
               done(null, newUser);
             });
         }
@@ -42,3 +46,9 @@ passport.use(
     }
   )
 );
+
+// module.exports = user;
+// {
+//   email: "aryan.khubchandani@gmail.com",
+//   website: "https://geeksforgeeks.org",
+// };
