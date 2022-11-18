@@ -19,128 +19,447 @@
 
     <link href="/css/style.css" rel="stylesheet" />
   </head>
+  <!-- sanjna-->
+  <style>
+   
+
+* {
+  padding: 0;
+  margin: 0;
+  color: #1a1f36;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+}
+body {
+    min-height: 100%;
+    background-color: #ffffff;
+}
+h1 {
+    letter-spacing: -1px;
+}
+a {
+  color: #814a17;
+  text-decoration: unset;
+}
+.login-root {
+    background: #fff;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.loginbackground {
+    min-height: 692px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+.flex-flex {
+    display: flex;
+}
+.align-center {
+  align-items: center; 
+}
+.center-center {
+  align-items: center;
+  justify-content: center;
+}
+.box-root {
+    box-sizing: border-box;
+}
+.flex-direction--column {
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.loginbackground-gridContainer {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: [start] 1fr [left-gutter] (86.6px) [left-gutter] 1fr [end];
+    grid-template-columns: [start] 1fr [left-gutter] repeat(16,86.6px) [left-gutter] 1fr [end];
+    -ms-grid-rows: [top] 1fr [top-gutter] (64px) [bottom-gutter] 1fr [bottom];
+    grid-template-rows: [top] 1fr [top-gutter] repeat(8,64px) [bottom-gutter] 1fr [bottom];
+    justify-content: center;
+    margin: 0 -2%;
+    transform: rotate(-12deg) skew(-12deg);
+}
+.box-divider--light-all-2 {
+    box-shadow: inset 0 0 0 2px #e3e8ee;
+}
+.box-background--blue {
+    background-color: #77471f;
+}
+.box-background--white {
+  background-color: #ffffff; 
+}
+
+.box-background--gray100 {
+    background-color: #e3e8ee;
+}
+.box-background--cyan200 {
+    background-color: #7fd3ed;
+}
+.padding-top--64 {
+  padding-top: 64px;
+}
+.padding-top--24 {
+  padding-top: 24px;
+}
+.padding-top--48 {
+  padding-top: 48px;
+}
+.padding-bottom--24 {
+  padding-bottom: 24px;
+}
+.padding-horizontal--48 {
+  padding: 48px;
+}
+.padding-bottom--15 {
+  padding-bottom: 15px;
+}
+
+
+.flex-justifyContent--center {
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.formbg {
+    margin: 0px auto;
+    width: 100%;
+    max-width: 36rem;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+span {
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1a1f36;
+}
+label {
+    margin-bottom: 10px;
+}
+.reset-pass a,label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+}
+.reset-pass > a {
+    text-align: right;
+    margin-bottom: 10px;
+}
+.grid--50-50 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+.field input {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 100%;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: rgba(218, 138, 35, 0.5);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+input[type="submit"] {
+    background-color: rgb(84, 105, 212);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
+                rgb(138, 101, 23) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.field-checkbox input {
+    width: 20px;
+    height: 15px;
+    margin-right: 5px; 
+    box-shadow: unset;
+    min-height: unset;
+}
+.field-checkbox label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+a.ssolink {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+.footer-link span {
+    font-size: 14px;
+    text-align: center;
+}
+.listing a {
+    color: #697386;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.animationRightLeft {
+  animation: animationRightLeft 2s ease-in-out infinite;
+}
+.animationLeftRight {
+  animation: animationLeftRight 2s ease-in-out infinite;
+}
+.tans3s {
+  animation: animationLeftRight 3s ease-in-out infinite;
+}
+.tans4s {
+  animation: animationLeftRight 4s ease-in-out infinite;
+}
+
+@keyframes animationLeftRight {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+} 
+
+@keyframes animationRightLeft {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+} 
+  </style>
   <body>
     <%- include('header'); -%>
-
+    <div class="login-root">
+      <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;width: 500px;">
+        <div class="loginbackground box-background--white padding-top--64">
+          <div class="loginbackground-gridContainer">
+            <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+              <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+              </div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+              <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+              <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+              <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+              <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+              <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+              <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+              <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+            </div>
+            <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+              <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+          <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
     <div class="user_profile">
-      <h1>Welcome to your profile, <%= user.username %></h1>
-      <main>
-        <img src="<%= user.thumbnail %>" />
+      <div class="formbg-outer">
+        <div class="formbg">
+          <div class="formbg-inner padding-horizontal--48">
+            <span class="padding-bottom--15" style="text-align: center;">Welcome to your profile, <%= user.username %></span>
+
+      <main style="text-align: center;">
+        <img src="<%= user.thumbnail %>"  />
       </main>
       <section class="upload" id="upload">
-        <h2 class="text-centre">Upload pet's details</h2>
+        <h6 class="text-centre">Upload pet's details</h6>
         <div class="form">
-          <form method="post" action="/upload" enctype="multipart/form-data">
+          <form
+            name="petform"
+            method="post"
+            action="/upload"
+            enctype="multipart/form-data"
+            onsubmit="return validateform()"
+          >
             <input
-              class="form-input"
-              type="text"
-              name="phone"
-              id="phone"
-              placeholder="Enter your phone"
-            />
-            <input
-              class="form-input"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter the pet's name"
-            />
+            class="form-input"
+            type="text"
+            name="petName"
+            id="petName"
+            placeholder="Enter the pet's name" required="required"
+            /><br>
             <input
               class="form-input"
               type="text"
               name="species"
               id="species"
-              placeholder="Enter the pet's species"
-            />
+              placeholder="Enter the pet's species" required="required"
+            /><br>
             <input
               class="form-input"
               type="text"
               name="age"
               id="age"
-              placeholder="Enter age of your pet"
+              placeholder="Enter age of your pet" required="required"
             /><br />
+            Pet's gender: &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="gender" id="male" value="Male" />Male<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="gender" id="female" value="Female" />Female
             <input
               class="form-input"
               type="text"
               name="breed"
               id="breed"
-              placeholder="Enter breed of your pet"
+              placeholder="Enter breed of your pet" required="required"
             /><br />
             Vaccination Status: &nbsp;&nbsp;&nbsp;
-            <input type="radio" name="Vaccination" id="Yes" value="Yes" />Yes
-            &nbsp;&nbsp;&nbsp;
-            <input type="radio" name="Vaccination" id="no" value="No" />No
+            <input type="radio" name="vaccination" id="Yes" value="Done" />Yes<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="vaccination" id="no" value="Not done" />No
             <input
               class="form-input"
               type="text"
               name="location"
               id="location"
-              placeholder="Enter your location"
+              placeholder="Enter your location" required="required"
             /><br />
             <textarea
               class="form-input"
-              name="text"
+              name="description"
               id="text"
               cols="30"
               rows="10"
-              placeholder="Your pet description"
+              placeholder="Your pet description" 
             ></textarea>
             Upload Image here:<input
               type="file"
               id="image"
               name="image"
-              class="btn"
+              class="btn" required="required"
             /><br />
-            <button type="submit" class="btn btn-sm btn-dark">Submit</button>
+            <center>
+            <button type="submit" class="btn btn-sm btn-dark" style="background-color: rgb(116, 90, 34);
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                        rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
+                        rgb(170, 133, 54) 0px 0px 0px 1px, 
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                        rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                        rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;width: 200px; height: 50px; text-align: center;">Submit</button>
+            </center>
+
           </form>
         </div>
       </section>
     </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+    <script>
+     function validateform() {
+        var petName = document.petform.petName.value;
+        var species = document.petform.species.value;
+        var age = document.petform.age.value;
+        var breed = document.petform.breed.value;
+        var vaccination = document.petform.vaccination.value;
+        var location = document.petform.location.value;
+        var description = document.petform.description.value;
+        var image = document.petform.image.value;
+        var gender = document.petform.gender.value;
 
-    <!-- <script>
-      const form = document.querySelector("form");
+        var alphabets = /^[a-zA-Z]{2,30}$/;
+        var alnum = /^[a-zA-Z0-9]+$/;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/;
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // get values
-        const name = form.name.value;
-        const species = form.species.value;
-        const age = form.age.value;
-        const location = form.location.value;
-        const vaccination = form.vaccination.value;
-        const breed = form.breed.value;
-        const description = form.description.value;
-        const image = form.image.value;
-
-        try {
-          const res = await fetch("/profile", {
-            method: "POST",
-            body: JSON.stringify({
-              name: name,
-              species: species,
-              age: age,
-              location: location,
-              vaccination: vaccination,
-              breed: breed,
-              description: description,
-              image: image,
-            }),
-            headers: { "Content-type": "application/json" },
-          });
-          const data = await res.json();
-          console.log("LMAOOOOO" + data);
-          // if (data.error) {
-          //   emailError.textContent = data.error.email;
-          //   passwordError.textContent = data.error.password;
-          // }
-          // if (data.user) {
-          //   location.assign("/");
-          // }
-        } catch (err) {
-          console.error(err);
+        if (!alphabets.test(petName)) {
+            alert("Pet name must contain only english letters");
+            return false;
         }
-      });
-    </script> -->
+        if (!alphabets.test(species)) {
+            alert("Species name must contain only english letters");
+            return false;
+        }
+        if (!(0 < parseInt(age) < 100)) {
+            alert("Age must be from 1 to 99");
+            return false;
+        }
+        if (!alphabets.test(breed)) {
+            alert("Breed name must contain only english letters");
+            return false;
+        }
+        if (!alphabets.test(breed)) {
+            alert("Breed name must contain only english letters");
+            return false;
+        }
+        if (!alnum.test(location)) {
+            alert("Location may only contain letters and numbers");
+            return false;
+        }
+        if (!allowedExtensions.test(image)) {
+            alert('Invalid file type');
+            return false;
+        }
+        if(gender == ""){
+            alert("Select gender");
+            return false;
+
+        }
+        if(vaccination == ""){
+            alert("Select vaccination status");
+            return false;
+        } 
+        else {
+          alert("Form successfully submitted!");
+          return true;
+        }
+      }
+
+    </script>
+
+
   </body>
 </html>

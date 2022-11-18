@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles2.css" />
+  </head>
+
+  <body>
+    <main>
+      <h4 id="FAQ" class="faq-heading">FAQ's</h4>
+      <section class="faq-container">
+        <div class="faq-one">
+          <!-- faq question -->
+          <h4 class="faq-page">Where is FindMyBuddy?</h4>
+
+          <!-- faq answer -->
+          <div class="faq-body">
+            <p>FindMyBuddy is present in all the states of India.</p>
+          </div>
+        </div>
+        <hr class="hr-line" />
+
+        <div class="faq-two">
+          <!-- faq question -->
+          <h4 class="faq-page">Are you insured and licensed?</h4>
+
+          <!-- faq answer -->
+
+          <div class="faq-body">
+            <p>Yes, We provide proper paper work for every adoption we make.</p>
+          </div>
+        </div>
+        <hr class="hr-line" />
+
+        <div class="faq-three">
+          <!-- faq question -->
+          <h4 class="faq-page">
+            What kind of pet care services do you provide?
+          </h4>
+
+          <!-- faq answer -->
+          <div class="faq-body">
+            <p>
+              We do not provide pet care services, we help the abandoned pets or
+              the stray animals.
+            </p>
+          </div>
+        </div>
+
+        <hr class="hr-line" />
+        <div class="faq-four">
+          <!-- faq question -->
+          <h4 class="faq-page">How can I register myself for adopting?</h4>
+
+          <!-- faq answer -->
+          <div class="faq-body">
+            <p>
+              Make your profile on our website using your email account or you
+              can directly sign up using Google.
+            </p>
+          </div>
+        </div>
+
+        <hr class="hr-line" />
+        <div class="faq-five">
+          <!-- faq question -->
+          <h4 class="faq-page">
+            Do I need to show proper verification if I want to give my pet for
+            adoption?
+          </h4>
+
+          <!-- faq answer -->
+          <div class="faq-body">
+            <p>
+              Yes, you need to give the proper proofs that you have owned that
+              pet and for how long the pet was with you and tell about the
+              vaccination details.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      var faq = document.getElementsByClassName("faq-page");
+      var i;
+
+      for (i = 0; i < faq.length; i++) {
+        faq[i].addEventListener("click", function () {
+          /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+          this.classList.toggle("faq-active");
+
+          /* Toggle between hiding and showing the active panel */
+          var body = this.nextElementSibling;
+          if (body.style.display === "block") {
+            body.style.display = "none";
+          } else {
+            body.style.display = "block";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

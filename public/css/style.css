@@ -72,7 +72,8 @@ body {
 }
 
 .header_section .quote_btn-container a {
-  color: #434242;
+  font-weight: 600;
+  color: #d99d60;
   text-transform: uppercase;
 }
 
@@ -221,9 +222,19 @@ a:focus {
 }
 
 .slider_img-box img {
+  border-radius: 10px;
   width: 100%;
 }
 
+.img2 {
+  margin-left: 10rem;
+  height: 67%;
+  width: 67% !important;
+}
+b {
+  color: #3c230f;
+  font-weight: bolder;
+}
 .carousel-indicators {
   bottom: -15%;
 }

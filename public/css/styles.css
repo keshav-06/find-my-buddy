@@ -139,11 +139,17 @@ html {
 
 .section {
   /* height: 400px; */
+  height: 22rem;
+  min-width: 34rem;
+  background-color: whitesmoke;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 80%;
-  margin: auto;
+  max-width: fit-content;
+  padding: 1rem;
+  /* max-width: 45%; */
+  margin: 1.5rem auto;
 }
 
 .left {
@@ -151,7 +157,7 @@ html {
 }
 
 .paras {
-  padding: 0 95px;
+  padding: 0 1.5rem;
 }
 
 .sectionTag {
@@ -163,6 +169,7 @@ html {
   border: 2px solid black;
   border-radius: 26px;
   margin-top: 19px;
+  margin-right: 0.5rem;
 }
 
 .head {

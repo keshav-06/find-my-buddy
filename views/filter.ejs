@@ -6,9 +6,9 @@
         <% const species = []; %> <% const cities = []; %> <% const map = new
         Map(); %> <% for (const item of data) { %> <%
         if(!map.has(item.species)){ %> <% map.set(item.species, true); %> <%
-        species.push(item.species);%> <% } %> <% if(!map.has(item.location)){ %>
-        <% map.set(item.location, true); %> <% cities.push(item.location);%> <%
-        } %> <% } %>
+        species.push(item.species); %> <% } %> <% if(!map.has(item.location)){
+        %> <% map.set(item.location, true); %> <% cities.push(item.location); %>
+        <% } %> <% } %>
         <label for="cityFilter">City</label>
         <select name="cityFilter" id="cityFilter">
           <option value="Any">Any</option>
@@ -28,28 +28,43 @@
         <label for="ageFilter">Age</label>
         <input type="number" name="ageFilter" id="ageFilter" min="0" max="99" />
 
+        <label for="genderFilter">Gender</label>
+        <select name="genderFilter" id="genderFilter">
+          <option value="Any">Any</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
         <label for="vacFilter">Vaccination</label>
         <select name="vacFilter" id="vacFilter">
           <option value="Any">Any</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Done">Done</option>
+          <option value="Not done">Not Done</option>
         </select>
 
-        <button type="button" class="btn btn-primary" id="filterButton">
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="filterButton"
+          style="background-color: #d99d60; border: 2px black"
+        >
           Filter
         </button>
       </center>
     </section>
+    <div id="mydiv" style="display: none"><%- JSON.stringify(data) %></div>
 
     <script>
       function filter() {
         var city = document.getElementById("cityFilter").value;
         var species = document.getElementById("speciesFilter").value;
         var age = document.getElementById("ageFilter").value;
+        var gender = document.getElementById("genderFilter").value;
         var vac = document.getElementById("vacFilter").value;
         var checkCity = city == "Any" ? false : true;
         var checkSpecies = species == "Any" ? false : true;
         var checkAge = age == "" ? false : true;
+        var checkGender = gender == "Any" ? false : true;
         var checkVac = vac == "Any" ? false : true;
 
         var pets1 = [].slice.call(document.getElementsByClassName("section"));
@@ -57,10 +72,8 @@
           document.getElementsByClassName("section left")
         );
         var pets = pets1.concat(pets2);
-        var data = JSON.parse("<%- JSON.stringify(data) %>");
-
+        var data = JSON.parse(document.getElementById("mydiv").innerHTML);
         for (let i = 0; i < data.length; i++) {
-          // var s = pets[i].childNodes[1].childNodes[3].innerHTML;
           if (checkAge) {
             if (age == data[i].age) {
               continue;
@@ -83,7 +96,14 @@
             }
           }
           if (checkVac) {
-            if (vac == data[i].vac) {
+            if (vac == data[i].vaccination) {
+              continue;
+            } else {
+              pets[i].style.display = "none";
+            }
+          }
+          if (checkGender) {
+            if (gender == data[i].gender) {
               continue;
             } else {
               pets[i].style.display = "none";

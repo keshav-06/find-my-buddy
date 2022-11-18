@@ -5,7 +5,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="#">
             <img
-              src="/images/logo.png"
+              src="/images/logo.jpeg"
               alt="PP"
               style="height: 90px; width: 90px; border-radius: 50px"
             />
@@ -33,37 +33,40 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/#About">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/pet-gallery">Pet's gallery </a>
+                  <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/#Contact">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/pet-gallery">Pet's gallery </a>
                 </li>
                 <% if (user) { %>
                 <li class="nav-item">
                   <a class="nav-link" href="/profile">Profile </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="/auth/logout"> Log out </a>
-                </li>
+                </li> -->
                 <% } else { %>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link" href="/auth/google"> Login </a>
-                </li>
+                </li> -->
                 <% } %>
               </ul>
-              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                <button
-                  class="btn my-2 my-sm-0 nav_search-btn"
-                  type="submit"
-                ></button>
-              </form>
+              <!-- <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              
+              </form> -->
             </div>
+            <% if (user) { %>
             <div class="quote_btn-container d-flex justify-content-center">
-              <a href=""> Call: +91 9988776655 </a>
+              <a class="nav-link" href="/auth/logout"> Log out </a>
             </div>
+            <% } else { %>
+            <div class="quote_btn-container d-flex justify-content-center">
+              <a class="nav-link" href="/auth/google"> Login </a>
+            </div>
+            <% } %>
           </div>
         </nav>
       </div>

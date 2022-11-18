@@ -13,9 +13,11 @@
     <link href="/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/chat.css">
 
+
 </head>
 
 <body>
+    
     <%- include('header'); -%>
     <!-- <div class="hero_area">
         <header class="header_section">
@@ -63,13 +65,18 @@
 
 
 
-        <section class=" slider_section position-relative">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+        <section class="slider_section">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <!--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>-->
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -80,19 +87,19 @@
                                         <h1>
                                             Adoption
                                             <span>
-                        Can Change Their Life!
-                      </span>
+                                                Can Change Their Life!
+                                            </span>
                                         </h1>
                                         <p>
                                             We help them find their forever home....
                                         </p>
                                         <div class="btn-box">
                                             <a href="/pet-gallery" class="btn-1">
-                        Adopt Now
-                      </a>
+                                                Adopt Now
+                                            </a>
                                             <a href="#Contact" class="btn-2">
-                        Contact
-                      </a>
+                                                Contact
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,32 +114,22 @@
                     <div class="carousel-item">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-4 offset-md-2">
-                                    <div class="slider_detail-box">
-                                        <h1>
-                                            Adoption
-                                            <span>
-                        Can Change Their Life!
-                      </span>
-                                        </h1>
-                                        <p>
-                                            We help them find their forever home....
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1">
-                        Adopt now
-                      </a>
-                                            <a href="" class="btn-2">
-                        Contact
-                      </a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="slider_img-box">
-                                        <img src="/images/background.png" alt="">
+                                        <img class="img2" src="/images/carousel2.jpeg" alt="">
                                     </div>
                                 </div>
+                                <div class="col-md-4 offset-md-1">
+                                    <div class="slider_detail-box">
+                                        <h1>
+                                            <span>
+                                                Find your
+                                            </span> <br>
+                                            New Bestfriend!
+                                        </h1>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -142,69 +139,37 @@
                                 <div class="col-md-4 offset-md-2">
                                     <div class="slider_detail-box">
                                         <h1>
-                                            Adoption
-                                            <span>
-                        Can Change Their Life!
-                      </span>
+                                           Have <span>questions?</span>
                                         </h1>
                                         <p>
-                                            We help them find their forever home....
+                                            You can checkout the <b>FAQs</b> section or <b>Contact us</b> directly!
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn-1">
-                        Adopt now
-                      </a>
-                                            <a href="" class="btn-2">
-                        Contact
-                      </a>
+                                            <a href="#FAQ" class="btn-1">
+                                                FAQ
+                                            </a>
+                                            <a href="#Contact" class="btn-2">
+                                                Contact Us
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="slider_img-box">
-                                        <img src="/images/background.png" alt="">
+                                        <img src="/images/carousel3.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4 offset-md-2">
-                                    <div class="slider_detail-box">
-                                        <h1>
-                                            Adoption
-                                            <span>
-                        Can Change Their Life! 
-                      </span>
-                                        </h1>
-                                        <p>
-                                            We help them find their forever home....
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1">
-                        Adopt now
-                      </a>
-                                            <a href="" class="btn-2">
-                        Contact
-                      </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="slider_img-box">
-                                        <img src="/images/background.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
                 </div>
             </div>
         </section>
 
     </div>
+
 
 
 
@@ -226,7 +191,7 @@
                             Pets complete My family. At FindMyBuddy, we help you find the pet of My choice available for adoption closest to My locality. We also provide a platform where you can put pets for adoption and help them find a loving and caring environment.
                         </p>
                         <div>
-                            <a href="">
+                            <a href="/about">
                 Learn More..
               </a>
                         </div>
@@ -236,12 +201,16 @@
         </div>
     </section>
 
+    <%- include('faq'); -%>
+
+    <br><br><br>
+
     <%- include('contact-us'); -%>
 
     <section class="info_section layout_padding2">
         <div class="container">
             <div class="info_items">
-                <a href="">
+                <a target=”_blank”  href="https://www.google.com/maps/place/Vellore+Institute+of+Technology/@12.9692232,79.1537449,17z/data=!3m1!4b1!4m5!3m4!1s0x3bad479f0ccbe067:0xfef222e5f36ecdeb!8m2!3d12.9692232!4d79.1559336">
                     <div class="item ">
                         <div class="img-box box-1">
                             <img src="" alt="">
@@ -253,7 +222,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
+                <a href="tel:9988776655">
                     <div class="item ">
                         <div class="img-box box-2">
                             <img src="" alt="">
@@ -265,7 +234,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
+                <a href="mailto:findmybuddy@gmail.com">
                     <div class="item ">
                         <div class="img-box box-3">
                             <img src="" alt="">
@@ -281,18 +250,7 @@
         </div>
     </section>
 
-    <button class="open-button" onclick="openForm()">Chat</button>
-    <div class="chat-popup" id="myForm">
-        <form action="/action_page.php" class="form-container">
-            <h1>Chat</h1>
-
-            <label for="msg"><b>Message</b></label>
-            <textarea placeholder="Type message.." name="msg" required></textarea>
-
-            <button type="submit" class="btn">Send</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
-    </div>
+   
 
     <section class="container-fluid footer_section">
         <p>

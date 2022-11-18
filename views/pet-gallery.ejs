@@ -20,8 +20,58 @@
     <title>Pet's Gallery</title>
   </head>
 
+  <style>
+    .popup {
+  display: none;
+  position: fixed;
+  bottom: 8rem;
+  left: 40rem;
+  border: 5px solid #ad8e60;
+  z-index: 9;
+  background-color: lightgray;
+  box-shadow: #747474;
+  
+}
+.popup{
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+  
+
+}
+.popup .btn{
+  background-color: #747474;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.popup .btnc{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #8a0000;
+    background: #ffffff;
+    border-radius: 100%;
+    width: 40px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+body{
+background-image: url("/images/bckgnd.jpg");
+background-size: contain;
+
+}
+  </style>
   <body>
     <%- include('header'); -%>
+    
     <!-- <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
@@ -82,21 +132,145 @@
       </div>
     </header> -->
     <section class="background firstsection">
-      <div class="box-main">
-        <div class="firstHalf">
-          <p class="text-big">Don't Shop, Adopt!</p>
-          <p class="text-small">Let's make their life happy too.</p>
-          <!-- <div class="buttons">
-                    <button class="btn">Watch Video</button>
-                </div> -->
-        </div>
-        <div class="secondHalf">
-          <img src="images/logo.png" alt="Logo Image" />
-        </div>
+      <div class="box-main" style="height: 300px;">
+        <center>
+
+          <div class="firstHalf">
+            <p class="text-big" style="color: black;">Don't Shop, Adopt!</p>
+            <p class="text-small" style="color: #3b3b3b;">Let's make their life happy too.</p>
+            <!-- <div class="buttons">
+              <button class="btn">Watch Video</button>
+            </div> -->
+          </div>
+        </center>
+        <!-- <div class="secondHalf">
+          <img src="images/logo.jpeg" alt="Logo Image" />
+          
+        </div> -->
       </div>
     </section>
 
-    <%- include('filter'); -%>
+       <%- include('filter'); -%>
+
+        <!-- <section id="filters">
+          <center>
+            <h2>Filter Buddies</h2>
+            <% const species = []; %> <% const cities = []; %> <% const map = new
+            Map(); %> <% for (const item of data) { %> <%
+            if(!map.has(item.species)){ %> <% map.set(item.species, true); %> <%
+            species.push(item.species); %> <% } %> <% if(!map.has(item.location)){
+            %> <% map.set(item.location, true); %> <% cities.push(item.location); %>
+            <% } %> <% } %>
+            <label for="cityFilter">City</label>
+            <select name="cityFilter" id="cityFilter">
+              <option value="Any">Any</option>
+              <% for(var i=0; i < cities.length; i++){ %>
+              <option value="<%= cities[i] %>"><%= cities[i] %></option>
+              <% } %>
+            </select>
+    
+            <label for="speciesFilter">Species</label>
+            <select name="speciesFilter" id="speciesFilter">
+              <option value="Any">Any</option>
+              <% for(var i=0; i < species.length; i++){ %>
+              <option value="<%= species[i] %>"><%= species[i] %></option>
+              <% } %>
+            </select>
+    
+            <label for="ageFilter">Age</label>
+            <input type="number" name="ageFilter" id="ageFilter" min="0" max="99" />
+    
+            <label for="vacFilter">Vaccination</label>
+            <select name="vacFilter" id="vacFilter">
+              <option value="Any">Any</option>
+              <option value="Done">Done</option>
+              <option value="Not done">Not Done</option>
+            </select>
+    
+            <button type="button" class="btn btn-primary" id="filterButton">
+              Filter
+            </button>
+          </center>
+        </section>
+        <div id="mydiv" data-test="<%- JSON.stringify(data) -%>"></div>
+    
+        <script>
+          function filter() {
+            var city = document.getElementById("cityFilter").value;
+            var species = document.getElementById("speciesFilter").value;
+            var age = document.getElementById("ageFilter").value;
+            var vac = document.getElementById("vacFilter").value;
+            var checkCity = city == "Any" ? false : true;
+            var checkSpecies = species == "Any" ? false : true;
+            var checkAge = age == "" ? false : true;
+            var checkVac = vac == "Any" ? false : true;
+    
+            var pets1 = [].slice.call(document.getElementsByClassName("section"));
+            var pets2 = [].slice.call(
+              document.getElementsByClassName("section left")
+            );
+            var pets = pets1.concat(pets2);
+            // var data = JSON.parse(document.getElementById("mydiv").dataset);
+            var data = JSON.parse("JSON.stringify(<%- data %>)");
+            console.log("DATA: " + data);
+            console.log("PETS: " + pets);
+            for (let i = 0; i < data.length; i++) {
+              // var s = pets[i].childNodes[1].childNodes[3].innerHTML;
+              if (checkAge) {
+                if (age == data[i].age) {
+                  continue;
+                } else {
+                  pets[i].style.display = "none";
+                }
+              }
+              if (checkCity) {
+                if (city == data[i].location) {
+                  continue;
+                } else {
+                  pets[i].style.display = "none";
+                }
+              }
+              if (checkSpecies) {
+                if (species == data[i].species) {
+                  continue;
+                } else {
+                  pets[i].style.display = "none";
+                }
+              }
+              if (checkVac) {
+                if (vac == data[i].vaccination) {
+                  continue;
+                } else {
+                  pets[i].style.display = "none";
+                }
+              }
+            }
+            document.getElementById("filterButton").innerHTML = "Reset";
+            document.getElementById("filterButton").onclick = reset;
+          }
+    
+          function reset() {
+            var pets1 = [].slice.call(document.getElementsByClassName("section"));
+            var pets2 = [].slice.call(
+              document.getElementsByClassName("section left")
+            );
+            var pets = pets1.concat(pets2);
+            for (let i = 0; i < pets.length; i++) {
+              pets[i].style.display = "flex";
+            }
+    
+            document.getElementById("ageFilter").value = "";
+            city = document.getElementById("cityFilter").value = "Any";
+            species = document.getElementById("speciesFilter").value = "Any";
+            vac = document.getElementById("vacFilter").value = "Any";
+            document.getElementById("filterButton").innerHTML = "Filter";
+            document.getElementById("filterButton").onclick = filter;
+          }
+    
+          document.getElementById("filterButton").onclick = filter;
+        </script> -->
+
+    
     
     <% if(data.length){ for(var i = 0; i < data.length; i++) {
       if(i%2 == 0){ %>
@@ -107,20 +281,50 @@
           <em><%= data[i].name %></em>
         </h2>
         <p class="sectionSubtag text-small">
+          Name: <%= data[i].petName %> <br />
           Species: <%= data[i].species %> <br />
-          Age: <%= data[i].age %> <br />Location: <%= data[i].location %><br />Vaccination:
-          Done<br />Breed: <%= data[i].breed %>
+          Age: <%= data[i].age %> <br />Gender: <%= data[i].gender %> <br />Location: <%= data[i].location %><br />Vaccination:
+          <%= data[i].vaccination %><br />Breed: <%= data[i].breed %>
         </p>
       </div>
+
       <div class="thumbnail">
-        <img src="<%= data[i].image %>" alt="pet image" class="imgFluid" />
+        <img src="<%= data[i].image %>" alt="pet image" class="imgFluid" onclick="pop()"/>
+        <div class="popup" id="mypop">
+          <button id="close" class="btnc">&times;</button>
+          <h3 style="text-align: center;"> About</h3><br>
+          <p>
+            <% x = 3 %>
+            Name: <%= data[x].petName %> <br />
+            Species: <%= data[x].species %><br>
+            Age: <%= data[x].age %><br>
+            Gender: <%= data[x].gender %><br>
+            Location: <%= data[x].location %><br>
+            Vaccination: <%= data[x].vaccination %><br>
+            Breed: <%= data[x].breed %><br>
+            About: <%= data[x].description %>
+          </p><br>
+          <a href="mailto:<%=data[x].email%>?subject=Inquiry regarding your <%=data[x].species%> <%=data[x].petName%> on Find My Buddy">
+            <button type="button"  class="btn">Contact Owner</button>
+          </a>
+
+        </div>
+        <script>
+          function pop() {
+            document.getElementById("mypop").style.display = "block";
+          }
+          
+          
+          document.querySelector("#close").addEventListener("click", function(){
+          document.querySelector(".popup").style.display = "none";
+        });
+          </script>
       </div>
     </section>
     <% } }else{ %>
     <section class="section">
       <div class="paras">
         <h2 class="sectionTag text-big head">No pets found!</h2>
-        rs
       </div>
     </section>
     <% } %>
@@ -230,28 +434,6 @@
 
     <hr />
 
-    <button class="open-button" onclick="openForm()">Chat</button>
-    <div class="chat-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>Chat</h1>
-
-        <label for="msg"><b>Message</b></label>
-        <textarea placeholder="Type message.." name="msg" required></textarea>
-
-        <button type="submit" class="btn">Send</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">
-          Close
-        </button>
-      </form>
-    </div>
-    <script>
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
-      }
-
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-      }
-    </script>
+    
   </body>
 </html>
